@@ -29,7 +29,7 @@
 
 ## 🔧 Installation
 
-1. **Download** the library ZIP [here](https://github.com/zacode123/Gemini_AI.zip).
+1. **Download** the library ZIP [here](https://github.com/zacode123/Gemini_AI/archive/refs/heads/main.zip).
 2. In Arduino IDE:
    - Go to `Sketch` → `Include Library` → `Add .ZIP Library...`
    - Select the downloaded ZIP file.
