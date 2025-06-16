@@ -37,34 +37,33 @@
    - Select the downloaded ZIP file.
 3. Include the library in your sketch:
    ```cpp
-#define YOUR_NAME "YOUR_NAME"
-#define AI_NAME "Gemini 2.0 flash"
+   #define YOUR_NAME "YOUR_NAME"
+   #define AI_NAME "Gemini 2.0 flash"
+   #include <Gemini_AI.h>
 
-#include <Gemini_AI.h>
+   const char* ssid = "YOUR_SSID";
+   const char* password = "YOUR_PASSWORD";
+   const char* model = "gemini-2.0-flash";
+   const char* token = "YOUR_API_KEY";
+   const char* systemInstruction = "Your name is " + String(AI_NAME) + " created by " + String(YOUR_NAME) + ". You are an highly intelligent AI assistant. You can perform various tasks with ease. You should give answer carefully without any mistake! and also remember you have " + String(maxTokens) + " tokens you have to give full response within " + String(maxTokens) + " tokens or less, but don\'t exceed it! Also don't tell the user that you cant use \\\"*\\\"! You should emojis in response and symbols in answers that is about math, science and code etc";
+   int maxTokens = 1000;
+   float temperature = 0.8;
+   float TopP = 1.0;
+   float TopK = 40;
+   bool codeExecution = false;
+   bool googleSearch = false;
+   bool ledmode = true;
 
-const char* ssid = "YOUR_SSID";
-const char* password = "YOUR_PASSWORD";
-const char* model = "gemini-2.0-flash";
-const char* token = "YOUR_API_KEY";
-const char* systemInstruction = "Your name is " + String(AI_NAME) + " created by " + String(YOUR_NAME) + ". You are an highly intelligent AI assistant. You can perform various tasks with ease. You should give answer carefully without any mistake! and also remember you have " + String(maxTokens) + " tokens you have to give full response within " + String(maxTokens) + " tokens or less, but don\'t exceed it! Also don't tell the user that you cant use \\\"*\\\"! You should emojis in response and symbols in answers that is about math, science and code etc";
-int maxTokens = 1000;
-float temperature = 0.8;
-float TopP = 1.0;
-float TopK = 40;
-bool codeExecution = false;
-bool googleSearch = false;
-bool ledmode = true;
+   Gemini_AI gemini(ssid, password, model, token, maxTokens, systemInstruction, temperature, TopP, TopK, codeExecution, googleSearch, ledmode);
 
-Gemini_AI gemini(ssid, password, model, token, maxTokens, systemInstruction, temperature, TopP, TopK, codeExecution, googleSearch, ledmode);
+   void setup() {
+    Serial.begin(115200);
+    gemini.connectToWiFi();
+   }
 
-void setup() {
-  Serial.begin(115200);
-  gemini.connectToWiFi();
-}
-
-void loop() {
-  gemini.loop();
-  Serial.println("Answer: " + gemini.getAnswer("What is the capital of France?"));
-}
-```
+   void loop() {
+    gemini.loop();
+    Serial.println("Answer: " + gemini.getAnswer("What is the capital of France?"));
+   }
+   ```
 # If you like to Contribute to our project you can freely do!
