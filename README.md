@@ -36,7 +36,7 @@
    - Go to `Sketch` → `Include Library` → `Add .ZIP Library...`
    - Select the downloaded ZIP file.
 3. Include the library in your sketch:
-   ```cpp
+   ``cpp
 #define YOUR_NAME "YOUR_NAME"
 #define AI_NAME "Gemini 2.0 flash"
 
