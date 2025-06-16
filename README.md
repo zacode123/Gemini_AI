@@ -1,5 +1,9 @@
-<p align="center">
-  <img src="https://yourdomain.com/logo.png" alt="Gemini_AI Logo" width="200">
+<p align="center"> ![IMG_20250614_195942](https://github.com/user-attachments/assets/0316ab79-aadc-4a65-b14f-cc1785e686ab)
+![Screenshot_2025-06-16-14-28-45-203_com miui gallery](https://github.com/user-attachments/assets/c82ff01c-be46-4612-8d82-d2049a4b8ca8)
+
+  <img src="![IMG_20250614_195942](https://github.com/user-attachments/assets/0316ab79-aadc-4a65-b14f-cc1785e686ab)
+![Screenshot_2025-06-16-14-28-45-203_com miui gallery](https://github.com/user-attachments/assets/c82ff01c-be46-4612-8d82-d2049a4b8ca8)
+" alt="Gemini_AI Logo" width="200">
 </p>
 
 <h1 align="center">Gemini_AI Library</h1>
