@@ -64,4 +64,5 @@
     Serial.println("Answer: " + gemini.getAnswer("What is the capital of France?"));
    }
    ```
-# If you like to Contribute to our project you can freely do!
+# ✨ Contribution
+ If you like to Contribute to our project you can freely do!❤️
