@@ -14,7 +14,7 @@ furnished to do so, subject to the following conditions:
 */
   
 #include <Gemini_AI.h>
-#include <credentials.h
+#include <credentials.h>
 
 // Create an instance of the Gemini_AI class
 Gemini_AI gemini(ssid, password, model, token, maxTokens, systemInstruction, temperature, TopP, TopK, codeExecution, googleSearch, ledmode);
