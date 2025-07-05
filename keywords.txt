@@ -1,0 +1,15 @@
+#######################################
+# Gemini_AI Library Keyword Definitions
+#######################################
+
+
+# Constructor
+Gemini_AI      KEYWORD1
+
+# Destructor
+~Gemini_AI KEYWORD1
+
+# Functions
+connectToWiFi      KEYWORD2
+getAnswer          KEYWORD2
+sayAnswer          KEYWORD2
