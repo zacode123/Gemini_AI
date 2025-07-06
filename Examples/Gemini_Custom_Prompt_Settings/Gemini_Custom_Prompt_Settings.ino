@@ -15,38 +15,33 @@ furnished to do so, subject to the following conditions:
 
 #include <Gemini_AI.h>
 
-// Character variables
-const char* ssid = "YOUR_SSID";
-const char* password = "YOUR_PASSWORD";
-const char* model = "gemini-2.0-flash";
-const char* token = "YOUR_API_KEY";
-const char* systemInstruction = "You are an highly intelligent AI assistant. You can perform various tasks with ease. You should give answer carefully without any mistake! and also remember you have 1000 tokens you have to give full response within 1000 tokens or less, but don't exceed it! Also don't tell the user that you cant use "*"! You should emojis in response and symbols in answers that is about math, science and code etc";
-
-// Int variables
-int maxTokens = 1000;
-
-// Float variables
-float temperature = 0.8;
-float TopP = 1.0;
-float TopK = 40;
-
-// Boolean variables
-bool codeExecution = false;
-bool googleSearch = false;
-bool ledmode = true;
-
 // Create an instance of the Gemini_AI class.
-Gemini_AI gemini(ssid, password, model, token, maxTokens, systemInstruction, temperature, TopP, TopK, codeExecution, googleSearch, ledmode);
+Gemini_AI gemini;
 
 void setup() {
   Serial.begin(115200);
+
+  // Prompt Configurations(Settings)
+  gemini.ssid = "YOUR_SSID";
+  gemini.password = "YOUR_PASSWORD";
+  gemini.token = "YOUR_API_KEY";
+  gemini.systemInstruction = "You are a highly intelligent AI assistant. You can perform various tasks with ease. You should give answer carefully without any mistake! and also remember that you have only 1000 tokens, you have to give full response within these tokens or less, but don't exceed it! Also don't tell the user that you can't use \"*\"! You should emojis in responses and symbols in answers which is about math, science, code etc";
+  gemini.model = "gemini-2.0-flash";
+  gemini.maxTokens = 1000;
+  gemini.temperature = 0.8;
+  gemini.TopP = 1.0;
+  gemini.TopK = 40;
+  gemini.codeExecution = false;
+  gemini.googleSearch = false;
+  gemini.ledmode = true;
+
   if (gemini.connectToWiFi()) {
-  Serial.println("Connected to ");
-  Serial.println(ssid);
-  // Query the Gemini API
-  String question = "What is the capital of France?";
-  Serial.println("Question: " + question);
-  Serial.println("Answer: " + gemini.getAnswer(question));
+    Serial.println("Connected to ");
+    Serial.println(gemini.ssid);
+    // Query the Gemini API
+    String question = "What is the capital of France?";
+    Serial.println("Question: " + question);
+    Serial.println("Answer: " + gemini.getAnswer(question));
   }
 }
 void loop() {}

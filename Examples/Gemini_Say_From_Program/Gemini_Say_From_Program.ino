@@ -15,18 +15,17 @@ furnished to do so, subject to the following conditions:
 
 #include <Gemini_AI.h>
 
-const char* ssid = "YOUR_SSID";
-const char* password = "YOUR_PASSWORD";
-const char* token = "YOUR_API_KEY";
-
 String question = "Tell me a long English story. But remember you have 350 tokens don't exceed this token otherwise I will recieve a half story response. Always tell the full story and don't tell other stuff except story!";
 String response;
 
 // Create an instance of the Gemini_AI class.
-Gemini_AI gemini(ssid, password, token);
+Gemini_AI gemini;
 
 void setup() {
     Serial.begin(115200);
+    gemini.ssid = "YOUR_SSID";
+    gemini.password = "YOUR_PASSWORD";
+    gemini.token = "YOUR_API_KEY";
     gemini.connectToWiFi();
     gemini.say("A I will now tell some stories in a delay of 5 seconds. Let's get started!");   
     delay(3000);

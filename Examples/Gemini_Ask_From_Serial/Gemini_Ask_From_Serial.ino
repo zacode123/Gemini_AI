@@ -15,15 +15,14 @@ furnished to do so, subject to the following conditions:
   
 #include <Gemini_AI.h>
 
-const char* ssid = "YOUR_SSID";
-const char* password = "YOUR_PASSWORD";
-const char* token = "YOUR_API_KEY";
-
 // Create an instance of the Gemini_AI class.
-Gemini_AI gemini(ssid, password, token);
+Gemini_AI gemini;
 
 void setup() {
   Serial.begin(115200);
+  gemini.ssid = "YOUR_SSID";
+  gemini.password = "YOUR_PASSWORD";
+  gemini.token = "YOUR_API_KEY";
  if (gemini.connectToWiFi()) {  // DO NOT REMOVE! library's internal connect to wifi function.
   Serial.println(F("Gemini AI assistant is ready!\n>> "));
  } else {

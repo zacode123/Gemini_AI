@@ -15,7 +15,7 @@ furnished to do so, subject to the following conditions:
 
 #include "Gemini_AI.h"        
     
-Gemini_AI::Gemini_AI(const char* ssid, const char* password, const char* model, const char* token, int maxTokens, const char* systemInstruction, float temperature, float TopP, float TopK, bool codeExecution, bool googleSearch, bool ledmode) : _ssid(ssid), _password(password), _model(model), _token(token), _systemInstruction(systemInstruction), _maxTokens(maxTokens), _temperature(temperature), _TopP(TopP), _TopK(TopK), _codeExecution(codeExecution), _googleSearch(googleSearch), _ledmode(ledmode) { 
+Gemini_AI::Gemini_AI() {
 #ifdef ESP8266
   out = new AudioOutputI2SNoDAC();    
   out->SetOutputModeMono(true);    
@@ -33,21 +33,21 @@ Gemini_AI::~Gemini_AI() {
 bool Gemini_AI::connectToWiFi() {       
   _sayInChunks("Initialising Gemini AI Assistant");    
   delay(300);    
-  if (_ledmode) {    
+  if (ledmode) {    
     pinMode(LED_BUILTIN, OUTPUT);    
     digitalWrite(LED_BUILTIN, HIGH);    
   }    
 #ifdef ESP8266    
   WiFi.disconnect();    
   WiFi.mode(WIFI_STA);    
-  WiFi.begin(_ssid, _password);    
+  WiFi.begin(ssid, password);    
 #else    
-  WiFi.begin(_ssid, _password);    
+  WiFi.begin(ssid, password);    
 #endif    
     
   Serial.print(F("Connecting to WiFi: "));    
-  Serial.println(_ssid);    
-  _sayInChunks("Connecting to " + String(_ssid));    
+  Serial.println(ssid);    
+  _sayInChunks("Connecting to " + String(ssid));    
   const char spinner[] = "|/-\\";    
   unsigned long start = millis();    
   int attempts = 0;    
@@ -60,7 +60,7 @@ bool Gemini_AI::connectToWiFi() {
       char spin = spinner[attempts % 4];    
       Serial.printf("\r[%c] Attempt #%d", spin, ++attempts);    
       delay(500);    
-    if (_ledmode) {    
+   if (ledmode) {    
       digitalWrite(LED_BUILTIN, LOW);    
       delay(250);    
       digitalWrite(LED_BUILTIN, HIGH);    
@@ -70,7 +70,7 @@ bool Gemini_AI::connectToWiFi() {
   Serial.println(F("\nConnected to WiFi."));    
   Serial.println("Signal Strength: " + String(WiFi.RSSI()) + " dBm");    
   _sayInChunks("Connected to WiFi!");    
-  if (_ledmode) digitalWrite(LED_BUILTIN, LOW);    
+  if (ledmode) digitalWrite(LED_BUILTIN, LOW);    
   Serial.print(F("IP Address: "));    
   Serial.println(WiFi.localIP());    
   _sayInChunks("IP Address: " + WiFi.localIP().toString());    
@@ -83,36 +83,36 @@ String Gemini_AI::_sendRequest(const String& question) {
     
   HTTPClient http;    
   String url = "https://generativelanguage.googleapis.com/v1beta/models/"    
-               + String(_model) + ":generateContent?key=" + String(_token);    
+               + String(model) + ":generateContent?key=" + String(token);    
   yield();    
 if (!http.begin(client, url)) return "Error: HTTP Begin Failed.";    
   http.setTimeout(15000);    
   http.addHeader("Content-Type", "application/json");    
   http.addHeader("Accept", "application/json");    
     
-  bool isImageModel = String(_model).indexOf("image-generation") >= 0;    
+  bool isImageModel = String(model).indexOf("image-generation") >= 0;    
   String modalities = isImageModel    
     ? "[\"IMAGE\", \"TEXT\"]"    
     : "[\"TEXT\"]";    
     
   String tools = "[";    
-  if (_googleSearch) tools += "{ \"googleSearch\": {} },";    
-  if (_codeExecution) tools += "{ \"codeExecution\": {} },";    
+  if (googleSearch) tools += "{ \"googleSearch\": {} },";    
+  if (codeExecution) tools += "{ \"codeExecution\": {} },";    
   if (tools.endsWith(",")) tools.remove(tools.length()-1);    
   tools += "]";    
     
   String payload = "{";    
   payload += "\"tools\":" + tools + ",";    
   payload += "\"generationConfig\":{";    
-  payload += "\"temperature\":" + String(_temperature, 2) + ",";    
-  payload += "\"topP\":" + String(_TopP, 2) + ",";    
-  payload += "\"topK\":" + String(_TopK, 2) + ",";    
-  payload += "\"maxOutputTokens\":" + String(_maxTokens) + ",";    
+  payload += "\"temperature\":" + String(temperature, 2) + ",";    
+  payload += "\"topP\":" + String(TopP, 2) + ",";    
+  payload += "\"topK\":" + String(TopK, 2) + ",";    
+  payload += "\"maxOutputTokens\":" + String(maxTokens) + ",";    
   payload += "\"responseModalities\":" + modalities + ",";    
   payload += "\"responseMimeType\":\"text/plain\"";    
   payload += "},";    
   payload += "\"systemInstruction\":{";    
-  payload += "\"parts\":[{\"text\":\"" + _escape(String(_systemInstruction), true) + "\"}]";    
+  payload += "\"parts\":[{\"text\":\"" + _escape(String(systemInstruction), true) + "\"}]";    
   payload += "},";    
   payload += "\"contents\":[{";    
   payload += "\"role\":\"user\",";    
@@ -136,7 +136,7 @@ if (!http.begin(client, url)) return "Error: HTTP Begin Failed.";
 void Gemini_AI::_sayInChunks(const String& text) {    
 #ifdef ESP8266
   if (!out || !sam || text.length() == 0) return;   
-   size_t chunkSize = 256
+   size_t chunkSize = 256;
    for (size_t i = 0; i < text.length(); i += chunkSize) {    
     String chunk = text.substring(i, i + chunkSize);    
     sam->Say(out, chunk.c_str());    
@@ -146,6 +146,10 @@ void Gemini_AI::_sayInChunks(const String& text) {
    Serial.println(F("TTS is not yet implemented for ESP32 boards. Please use ESP8266 instead!")); 
 }    
     
+void Gemini_AI::say(const String& text) {
+   _sayInChunks(text);
+}
+
 String Gemini_AI::getAnswer(const String& question) {      
   return _sendRequest(question);    
 }    
