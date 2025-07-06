@@ -78,7 +78,8 @@ bool Gemini_AI::connectToWiFi() {
 }    
     
 String Gemini_AI::_sendRequest(const String& question) {
-  WiFiClientSecure client;    
+  WiFiClientSecure client; 
+  client.setBufferSizes(4096, 1024);   
   client.setInsecure();    
     
   HTTPClient http;    
