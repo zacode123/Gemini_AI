@@ -20,9 +20,9 @@ Gemini_AI gemini;
 
 void setup() {
   Serial.begin(115200);
-  gemini.ssid = "YOUR_SSID";
+  gemini.ssid     = "YOUR_SSID";
   gemini.password = "YOUR_PASSWORD";
-  gemini.token = "YOUR_API_KEY";
+  gemini.token    = "YOUR_API_KEY";
   if (gemini.connectToWiFi()) {
   Serial.println("Connected to ");
   Serial.println(ssid);
