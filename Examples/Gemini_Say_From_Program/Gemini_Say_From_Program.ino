@@ -23,9 +23,9 @@ Gemini_AI gemini;
 
 void setup() {
     Serial.begin(115200);
-    gemini.ssid = "YOUR_SSID";
+    gemini.ssid     = "YOUR_SSID";
     gemini.password = "YOUR_PASSWORD";
-    gemini.token = "YOUR_API_KEY";
+    gemini.token    = "YOUR_API_KEY";
     gemini.connectToWiFi();
     gemini.say("A I will now tell some stories in a delay of 5 seconds. Let's get started!");   
     delay(3000);
