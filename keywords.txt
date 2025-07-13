@@ -4,7 +4,7 @@
 
 
 # Constructor
-Gemini_AI          KEYWORD1
+Gemini AI          KEYWORD1
 
 # Destructor
 ~Gemini_AI         KEYWORD1
