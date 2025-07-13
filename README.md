@@ -57,5 +57,16 @@
     Serial.println("Answer: " + gemini.getAnswer("What is the capital of France?"));
    }
    ```
+
+---
+
+## Compilation 
+
+- **Precompiled bin files are also added for esp8266 only** — Go to `Examples` → `bin` to get the bin files.
+- **For Arduino IDE** — See the Installation part.
+
+---
+
 # ✨ Contribution
+
  If you like to Contribute to our project you can freely do!❤️
