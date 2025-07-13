@@ -22,18 +22,18 @@ void setup() {
   Serial.begin(115200);
 
   // Prompt Configurations(Settings)
-  gemini.ssid = "YOUR_SSID";
-  gemini.password = "YOUR_PASSWORD";
-  gemini.token = "YOUR_API_KEY";
+  gemini.ssid              = "YOUR_SSID";
+  gemini.password          = "YOUR_PASSWORD";
+  gemini.token             = "YOUR_API_KEY";
   gemini.systemInstruction = "You are a highly intelligent AI assistant. Give *FULL* answer carefully without mistakes. Don't mention you can't use '*'. Use emojis and symbols where relevant.";
-  gemini.model = "gemini-2.0-flash";
-  gemini.maxTokens = 1000;
-  gemini.temperature = 0.8;
-  gemini.TopP = 1.0;
-  gemini.TopK = 40;
-  gemini.codeExecution = false;
-  gemini.googleSearch = false;
-  gemini.ledmode = true;
+  gemini.model             = "gemini-2.0-flash";
+  gemini.maxTokens         = 1000;
+  gemini.temperature       = 0.8;
+  gemini.TopP              = 1.0;
+  gemini.TopK              = 40;
+  gemini.codeExecution     = false;
+  gemini.googleSearch      = false;
+  gemini.ledmode           = true;
 
   if (gemini.connectToWiFi()) {
     Serial.println("Connected to ");
