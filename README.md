@@ -62,7 +62,7 @@
 
 ## 🛠️ Compilation 
 
-- **Precompiled bin files are also provided for esp8266 only** — Go to `Examples` → `bin` to get the bin files.
+- **Precompiled bin files are also provided for esp8266 only** — Go to `Examples` → `bin` to get the Bin files.
 - **For Arduino IDE** — See the [Installation](#-installation) part.
 
 ---
