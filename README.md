@@ -41,19 +41,15 @@
    - Select the downloaded ZIP file.
 3. Include the library in your sketch:
    ```cpp
-   #define YOUR_NAME "YOUR_NAME"
-   #define AI_NAME "Gemini 2.0 flash"
    #include <Gemini_AI.h>
-
-   const char* ssid = "YOUR_SSID";
-   const char* password = "YOUR_PASSWORD";
-   const char* model = "gemini-2.0-flash";
-   const char* token = "YOUR_API_KEY";
-
-   Gemini_AI gemini(ssid, password, model, token);
-
+   
+   Gemini_AI gemini;
+   
    void setup() {
     Serial.begin(115200);
+    gemini.ssid     = "YOUR_SSID";
+    gemini.password = "YOUR_PASSWORD";
+    gemini.token    = "YOUR_API_KEY";
     gemini.connectToWiFi();
    }
 
