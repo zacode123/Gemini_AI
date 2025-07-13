@@ -44,10 +44,7 @@ void setup() {
   gemini.codeExecution      = false;
   gemini.googleSearch       = false;
   gemini.ledmode            = true;
-  gemini.systemInstruction  = "You are a highly intelligent AI assistant. "
-                              "Answer carefully without mistakes within 1000 tokens "
-                              "or less. Don't mention you can't use '*'. Use emojis and "
-                              "symbols where relevant.";
+  gemini.systemInstruction  = "You are a highly intelligent AI assistant. Give *FULL* answer carefully without mistakes. Don't mention you can't use '*'. Use emojis and symbols where relevant.";
 
   if (gemini.connectToWiFi()) {
     clear();
