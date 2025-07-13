@@ -25,7 +25,7 @@ void setup() {
   gemini.ssid = "YOUR_SSID";
   gemini.password = "YOUR_PASSWORD";
   gemini.token = "YOUR_API_KEY";
-  gemini.systemInstruction = "You are a highly intelligent AI assistant. You can perform various tasks with ease. You should give *FULL* answer carefully without any mistake! Also don't tell the user that you can't use \"*\"! You should emojis in responses and symbols in answers which is about math, science, code etc";
+  gemini.systemInstruction = "You are a highly intelligent AI assistant. Give *FULL* answer carefully without mistakes. Don't mention you can't use '*'. Use emojis and symbols where relevant.";
   gemini.model = "gemini-2.0-flash";
   gemini.maxTokens = 1000;
   gemini.temperature = 0.8;
