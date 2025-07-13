@@ -25,11 +25,11 @@
 
 ---
 
-## 🚀 What's New
+## 🚀 What's New (6.4.0)
 
 - ✨ **Added support for ESP32** — expanded compatibility and performance improvements.
 - ✨ **Performance Upgraded** — Now it can handle large responses without issues.
-- ✨ **Custom Json parser** — Removed ArduinoJson for memory improvements.
+- ✨ **Json parser** — Removed ArduinoJson by adding custom text parser from json for memory improvements (may need to be changed if api's structure changes).
 
 ---
 
