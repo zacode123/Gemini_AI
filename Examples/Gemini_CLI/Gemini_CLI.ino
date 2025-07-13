@@ -225,49 +225,15 @@ void update(const String& key, const String& value) {
 }
 
 void showCredentials() {
-  Serial.println(F("\n============== GEMINI CONFIG ==============\n"));
-  Serial.print(F("SSID           : ")); Serial.println(gemini.ssid);
-  Serial.print(F("Password       : ")); Serial.println(gemini.password);
-  Serial.print(F("API Key        : ")); Serial.println(gemini.token);
-  Serial.print(F("Model          : ")); Serial.println(gemini.model);
-  Serial.print(F("SystemInstr    : ")); Serial.println(gemini.systemInstruction);
-  Serial.print(F("MaxTokens      : ")); Serial.println(gemini.maxTokens);
-  Serial.print(F("Temperature    : ")); Serial.println(gemini.temperature);
-  Serial.print(F("TopP           : ")); Serial.println(gemini.TopP);
-  Serial.print(F("TopK           : ")); Serial.println(gemini.TopK);
-  Serial.print(F("CodeExec       : ")); Serial.println(gemini.codeExecution ? "Enabled" : "Disabled");
-  Serial.print(F("GoogleSearch   : ")); Serial.println(gemini.googleSearch ? "Enabled" : "Disabled");
-  Serial.print(F("LED Indicator  : ")); Serial.println(gemini.ledmode ? "Enabled" : "Disabled");
-  Serial.println(F("\n==========================================\n"));
+  Serial.printf("\n============== GEMINI CONFIG ==============\n\tSSID          : %s\n\tPassword      : %s\n\tAPI Key       : %s\n\tModel         : %s\n\tSystemInstr   : %s\n\tMaxTokens     : %d\n\tTemperature   : %.2f\n\tTopP          : %.2f\n\tTopK          : %.2f\n\tCodeExec      : %s\n\tGoogleSearch  : %s\n\tLED Indicator : %s\n\n==========================================\n", gemini.ssid, gemini.password, gemini.token, gemini.model, gemini.systemInstruction, gemini.maxTokens, gemini.temperature, gemini.TopP, gemini.TopK, gemini.codeExecution ? "Enabled" : "Disabled", gemini.googleSearch ? "Enabled" : "Disabled", gemini.ledmode ? "Enabled" : "Disabled");
 }
 
 void printSystemInfo() {
-  Serial.println(F("\n================ SYSTEM INFO ================\n"));
-  Serial.printf("Free Heap      : %u bytes\n", ESP.getFreeHeap());
-  Serial.printf("Chip ID        : %u\n", ESP.getChipId());
-  Serial.printf("Core Version   : %s\n", ESP.getCoreVersion());
-  Serial.printf("SDK Version    : %s\n", ESP.getSdkVersion());
-  Serial.printf("CPU Freq       : %u MHz\n", ESP.getCpuFreqMHz());
-  Serial.printf("IP Address     : %s\n", WiFi.localIP().toString().c_str());
-  Serial.printf("Signal Strength: %d dBm\n", WiFi.RSSI());
-  unsigned long elapsed = millis() - bootTime;
-  unsigned long seconds = elapsed / 1000;
-  Serial.printf("Uptime         : %lu sec\n", seconds);
-  Serial.println(F("\n=============================================\n"));
+  Serial.printf("\n============ SYSTEM INFO ============\n\tFree Heap\t\t: %u bytes\n\tHeap Fragmentation\t: %u%%\n\tMax Free Block Size\t: %u bytes\n\tFlash Chip Size\t\t: %u KB\n\tFlash Chip Speed\t: %u MHz\n\tSketch Size\t\t: %u KB\n\tFlash CRC check\t\t: %s\n\tFree Sketch Space\t: %u KB\n\tChip ID\t\t\t: %u\n\tCore Version\t\t: %s\n\tSDK Version\t\t: %s\n\tCPU Frequency\t\t: %u MHz\n\tBoot Version\t\t: %u\n\tBoot Mode\t\t: %u\n\tReset Info\t\t: %s\n\tReset Reason\t\t: %s\n\tHostname\t\t: %s\n\tMAC Address\t\t: %s\n\tIP Address\t\t: %s\n\tSignal Strength\t\t: %d dBm\n\tUptime\t\t\t: %02lu:%02lu:%02lu (hh:mm:ss)\n\tVoltage (ADC read)\t: %.2f V\n===================================\n", ESP.getFreeHeap(), ESP.getHeapFragmentation(), ESP.getMaxFreeBlockSize(), ESP.getFlashChipRealSize() / 1024, ESP.getFlashChipSpeed() / 1000000, ESP.getSketchSize() / 1024, ESP.checkFlashCRC() ? "passed" : "failed", ESP.getFreeSketchSpace() / 1024, ESP.getChipId(), ESP.getCoreVersion(), ESP.getSdkVersion(), ESP.getCpuFreqMHz(), system_get_boot_version(), ESP.getBootMode(), ESP.getResetInfo().c_str(), ESP.getResetReason().c_str(), WiFi.hostname().c_str(), WiFi.macAddress().c_str(), WiFi.localIP().toString().c_str(), WiFi.RSSI(), (millis() - _bootTime)/3600000UL, ((millis() - _bootTime)/60000UL)%60, ((millis() - _bootTime)/1000UL)%60, ESP.getVcc()/1000.0);
 }
 
 void printHelp() {
-  Serial.println(F("\n============== Available Commands ==============\n"));
-  Serial.println(F("rres               : print last JSON response"));
-  Serial.println(F("rreq               : print last JSON request"));
-  Serial.println(F("si,sysinfo         : system info"));
-  Serial.println(F("sc                 : show current credentials"));
-  Serial.println(F("cc \"field\" \"value\": change credential"));
-  Serial.println(F("save,s             : save to EEPROM"));
-  Serial.println(F("load,l             : load from EEPROM"));
-  Serial.println(F("clear,cls          : clear the screen"));
-  Serial.println(F("help,h             : this help"));
-  Serial.println(F("\n================================================\n"));
+  Serial.println(F("\n============== AVAILABLE COMMANDS ==============\n\trres\t\t\t: print last JSON response\n\trreq\t\t\t: print last JSON request\n\tsi,sysinfo\t\t: system info\n\tsc\t\t\t: show current credentials\n\tcc \"field\" \"value\"\t: change credential\n\tsave,s\t\t\t: save to EEPROM\n\tload,l\t\t\t: load from EEPROM\n\tclear,cls\t\t: clear the screen\n\thelp,h\t\t\t: print help\n\n================================================\n"));
 }
 
 void initEEPROM() {
