@@ -1,6 +1,6 @@
 ![Screenshot_2025-06-16-14-28-45-203_com miui gallery](https://github.com/user-attachments/assets/c82ff01c-be46-4612-8d82-d2049a4b8ca8)
 
-<h1 align="center">Gemini_AI Library</h1>
+<h1 align="center">Gemini AI Library</h1>
 
 <p align="center">
   <b>✨ Bring Google's Gemini AI to ESP8266 & ESP32 ✨</b><br>
@@ -63,7 +63,7 @@
 ## Compilation 
 
 - **Precompiled bin files are also added for esp8266 only** — Go to `Examples` → `bin` to get the bin files.
-- **For Arduino IDE** — See the Installation part.
+- **For Arduino IDE** — See the #Installation part.
 
 ---
 
