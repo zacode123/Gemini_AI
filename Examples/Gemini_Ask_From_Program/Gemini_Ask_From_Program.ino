@@ -25,7 +25,7 @@ void setup() {
   gemini.token    = "YOUR_API_KEY";
   if (gemini.connectToWiFi()) {
   Serial.println("Connected to ");
-  Serial.println(ssid);
+  Serial.println(gemini.ssid);
   // Query the Gemini API
   String question = "What is the capital of France?";
   Serial.println("Question: " + question);
