@@ -15,7 +15,7 @@ furnished to do so, subject to the following conditions:
 
 #include <Gemini_AI.h>
 
-String question = "Tell me a long English story. But remember you have 350 tokens don't exceed this token otherwise I will recieve a half story response. Always tell the full story and don't tell other stuff except story!";
+String question = "Tell me a long English story. Always tell the full story and don't tell other stuff except story!";
 String response;
 
 // Create an instance of the Gemini_AI class.
