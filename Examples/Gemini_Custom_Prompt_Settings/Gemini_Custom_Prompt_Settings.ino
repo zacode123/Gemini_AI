@@ -24,9 +24,9 @@ void setup() {
   // Prompt Configurations(Settings)
   gemini.ssid              = "YOUR_SSID";
   gemini.password          = "YOUR_PASSWORD";
-  gemini.token             = "YOUR_API_KEY";
-  gemini.systemInstruction = "You are a highly intelligent AI assistant. Give *FULL* answer carefully without mistakes. Don't mention you can't use '*'. Use emojis and symbols where relevant.";
   gemini.model             = "gemini-2.0-flash";
+  gemini.systemInstruction = "You are a highly intelligent AI assistant. Give *FULL* answer carefully without mistakes. Don't mention you can't use '*'. Use emojis and symbols where relevant.";
+  gemini.token             = "YOUR_API_KEY";
   gemini.maxTokens         = 1000;
   gemini.temperature       = 0.8;
   gemini.TopP              = 1.0;
