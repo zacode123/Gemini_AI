@@ -29,7 +29,7 @@
 
 - ✨ **Added support for ESP32** — expanded compatibility and performance improvements.
 - ✨ **Performance Upgraded** — Now it can handle large responses without issues.
-- ✨ **Json parser** — Removed ArduinoJson by adding custom text parser from json for memory improvements (may need to be changed if api's structure changes).
+- ✨ **Json parser** — Removed ArduinoJson by adding custom text parser from json for memory improvements (may need to be changed if api's json structure changes).
 
 ---
 
