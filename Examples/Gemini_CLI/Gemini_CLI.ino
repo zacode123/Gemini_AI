@@ -38,9 +38,9 @@ void setup() {
   gemini.model              = "gemini-2.0-flash";
   gemini.token              = "YOUR_API_KEY";
   gemini.maxTokens          = 1000;
-  gemini.temperature        = 0.8f;
-  gemini.TopP               = 1.0f;
-  gemini.TopK               = 40.0f;
+  gemini.temperature        = 0.8;
+  gemini.TopP               = 1.0;
+  gemini.TopK               = 40.0;
   gemini.codeExecution      = false;
   gemini.googleSearch       = false;
   gemini.ledmode            = true;
