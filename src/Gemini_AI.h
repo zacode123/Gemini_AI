@@ -33,9 +33,9 @@ class Gemini_AI {
     const char*  ssid;
     const char*  password;
     const char*  model             = "gemini-2.0-flash";
-    const char*  token;
     const char*  systemInstruction = "You are a highly intelligent AI assistant. Give *FULL* answer carefully without mistakes. Don't mention you can't use '*'. Use emojis and symbols where relevant.";
-
+    const char*  token;
+    
           int    maxTokens         = 1000;
 
           float  temperature       = 0.8;
