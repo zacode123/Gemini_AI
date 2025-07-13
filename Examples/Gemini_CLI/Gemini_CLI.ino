@@ -36,6 +36,7 @@ void setup() {
   gemini.ssid               = "YOUR_SSID";
   gemini.password           = "YOUR_PASSWORD";
   gemini.model              = "gemini-2.0-flash";
+  gemini.systemInstruction  = "You are a highly intelligent AI assistant. Give *FULL* answer carefully without mistakes. Don't mention you can't use '*'. Use emojis and symbols where relevant.";
   gemini.token              = "YOUR_API_KEY";
   gemini.maxTokens          = 1000;
   gemini.temperature        = 0.8;
@@ -44,8 +45,7 @@ void setup() {
   gemini.codeExecution      = false;
   gemini.googleSearch       = false;
   gemini.ledmode            = true;
-  gemini.systemInstruction  = "You are a highly intelligent AI assistant. Give *FULL* answer carefully without mistakes. Don't mention you can't use '*'. Use emojis and symbols where relevant.";
-
+  
   if (gemini.connectToWiFi()) {
     clear();
     Serial.print(F("Connected to: "));
