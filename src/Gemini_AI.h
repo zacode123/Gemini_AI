@@ -32,16 +32,19 @@ class Gemini_AI {
   public:
     const char*  ssid;
     const char*  password;
-    const char*  model;
+    const char*  model             = "gemini-2.0-flash";
     const char*  token;
-    const char*  systemInstruction;
-    int    maxTokens;
-    float  temperature;
-    float  TopP;
-    float  TopK;
-    bool   codeExecution;
-    bool   googleSearch;
-    bool   ledmode;
+    const char*  systemInstruction = "You are a highly intelligent AI assistant. Give *FULL* answer carefully without mistakes. Don't mention you can't use '*'. Use emojis and symbols where relevant.";
+
+          int    maxTokens         = 1000;
+
+          float  temperature       = 0.8;
+          float  TopP              = 1.0;
+          float  TopK              = 40.0;
+
+          bool   codeExecution     = false;
+          bool   googleSearch      = false;
+          bool   ledmode           = true;
     Gemini_AI();
     ~Gemini_AI();
     bool connectToWiFi();
