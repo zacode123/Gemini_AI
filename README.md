@@ -60,7 +60,7 @@
 
 ---
 
-## Compilation 
+## 🛠️ Compilation 
 
 - **Precompiled bin files are also added for esp8266 only** — Go to `Examples` → `bin` to get the bin files.
 - **For Arduino IDE** — See the [Installation](#-installation) part.
