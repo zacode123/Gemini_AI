@@ -94,7 +94,6 @@ private:
       }
       builder.endArray();
     }
-<<<<<<< HEAD
     builder.key("generationConfig");
     builder.beginObject();
     builder.key("temperature");
@@ -125,7 +124,6 @@ private:
     builder.endObject();
     builder.endArray();
     builder.endObject();
-=======
     if (temperature != 0 || TopP != 0 || TopK != 0 || maxtokens != 0 || strstr(model, "image-generation") != nullptr) {
       builder.key("generationConfig");
       builder.beginObject();
@@ -166,7 +164,6 @@ private:
       builder.endArray();
       builder.endObject();
     }
->>>>>>> 36ef09d (Last updated library to v6.5.0)
     builder.key("contents");
     builder.beginArray();
     builder.beginObject();
@@ -257,17 +254,6 @@ public:
   const char* systemInstruction = "You are a highly intelligent AI assistant. Give *FULL* answer carefully without mistakes. Don't mention you can't use '*'. Use emojis and symbols where relevant.";  
   const char* token;  
 
-<<<<<<< HEAD
-#ifdef USE_TTS  
-  int   maxTokens               = 300;
-#else  
-  int   maxTokens               = 1000;
-#endif  
-
-  float temperature             = 0.8;  
-  float TopP                    = 1.0;  
-  float TopK                    = 40.0;  
-=======
 #ifdef CUSTOM_TOKEN_COUNTS  
   int   maxTokens               = DEFAULT_TOKENS;
 #else  
@@ -277,7 +263,6 @@ public:
   float temperature             = 0;  
   float TopP                    = 0;  
   float TopK                    = 0;  
->>>>>>> 36ef09d (Last updated library to v6.5.0)
   
   bool  codeExecution           = false;  
   bool  googleSearch            = false;  
