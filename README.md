@@ -97,4 +97,4 @@
 
 ---
 
-### **🛸 Like this project? Show some love by giving it a ⭐️!**
+## *🛸 Like this project? Show some love by giving it a ⭐️!*
