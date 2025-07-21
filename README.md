@@ -25,7 +25,7 @@
 
 ---
 
-## 🚀 What's New (v6.5.0)
+## 🚀 What's New (v6.4.0)
 
 ### 🗂️ File management
 - All related source files are now modularized into .hpp headers.
