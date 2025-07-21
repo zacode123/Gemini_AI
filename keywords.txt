@@ -1,0 +1,30 @@
+#######################################
+# Gemini_AI Library Keyword Definitions
+#######################################
+
+
+# Constructor
+Gemini AI          KEYWORD1
+
+# Destructor
+~Gemini_AI         KEYWORD1
+
+# Functions
+connectToWiFi      KEYWORD2
+getAnswer          KEYWORD2
+getAnswerStream    KEYWORD2
+sayAnswer          KEYWORD2
+say                KEYWORD2
+
+ssid               LITERAL1
+password           LITERAL1
+model              LITERAL1
+systemInstruction  LITERAL1
+token              LITERAL1
+maxToken           LITERAL1
+temperature        LITERAL1
+TopP               LITERAL1
+TopK               LITERAL1
+codeExecution      LITERAL1
+googleSearch       LITERAL1
+ledmode            LITERAL1
