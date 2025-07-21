@@ -25,7 +25,11 @@
 
 ---
 
+<<<<<<< HEAD
 ## 🚀 What's New (v6.4.0)
+=======
+## 🚀 What's New (v6.5.0)
+>>>>>>> 36ef09d (Last updated library to v6.5.0)
 
 ### 🗂️ File management
 - All related source files are now modularized into .hpp headers.
@@ -50,6 +54,10 @@
 - Memory usage optimized for **real-time inference** and **chunked text extraction**.
 - Internal `_extractContent()` now uses `ESP8266Json` to extract `"text"` efficiently.
 - Added a limit of 5000 `maxTokens` for **normal use** and 400 `maxTokens` for `USE_TTS`, to optimize memory issues. `maxTokens` greater than its limit will fallback to the limit.
+<<<<<<< HEAD
+=======
+- HTTPS POST payload heap reduced by only including useful settings in it.
+>>>>>>> 36ef09d (Last updated library to v6.5.0)
 
 ### 📦 Modular `Gemini_AI.hpp` Improvements
 - Cleaner separation of parsing logic and request handling.
@@ -96,4 +104,8 @@
 
 ---
 
+<<<<<<< HEAD
 ### **🛸 Like this project? Show some love by giving it a ⭐️!**
+=======
+### **🛸 Like this project? Show some love by giving it a ⭐️!**
+>>>>>>> 36ef09d (Last updated library to v6.5.0)

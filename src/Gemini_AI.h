@@ -24,14 +24,30 @@
 #ifdef __cplusplus
 
 // #define USE_TTS  
+<<<<<<< HEAD
+=======
+// #define CUSTOM_TOKEN_COUNTS
+>>>>>>> 36ef09d (Last updated library to v6.5.0)
 
 #define GEMINI_AI_VERSION "6.5.0"
 #define PAYLOAD_BUFFER_SIZE 1500
 
 #ifdef USE_TTS  
+<<<<<<< HEAD
   #define MAX_TOKENS 400  
 #else  
   #define MAX_TOKENS 5000  
+=======
+  #define MAX_TOKENS 400
+#ifdef CUSTOM_TOKEN_COUNTS
+  #define DEFAULT_TOKENS 300 
+#endif
+#else  
+  #define MAX_TOKENS 5000
+#ifdef CUSTOM_TOKEN_COUNTS
+  #define DEFAULT_TOKENS 1000 
+#endif
+>>>>>>> 36ef09d (Last updated library to v6.5.0)
 #endif  
 
 #include "Gemini_AI.hpp"
