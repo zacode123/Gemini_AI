@@ -34,7 +34,7 @@
 
 ### 🛠️ Static JSON Builder
 - Uses only stack and static memory—no malloc, new, or String—perfect for low-RAM environments like ESP8266.
-- Ultra-fast serialization and ightweight and fast JSON building into a user-supplied char[] buffer.
+- Ultra-fast serialization and ightweight and super fast JSON building.
 - Supports deeply nested objects and arrays. Handles complex JSON structures with configurable maximum nesting depth.
 - Payload is generated using this library.
 
