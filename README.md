@@ -32,17 +32,17 @@
 - Each header is now self-contained with minimal external dependencies.
 - Only necessary components are compiled into the final firmware.
 
-### 🛠️ Static JSON Builder (New `ESP8266StaticJsonBuilder.hpp`)
+### 🛠️ Static JSON Builder
 - Uses only stack and static memory—no malloc, new, or String—perfect for low-RAM environments like ESP8266.
 - Ultra-fast serialization and ightweight and fast JSON building into a user-supplied char[] buffer.
 - Supports deeply nested objects and arrays. Handles complex JSON structures with configurable maximum nesting depth.
 - Payload is generated using this library.
 
-### 🔄 Stream-Based JSON Parsing (New `ESP8266StreamJsonParser.hpp`)
+### 🔄 Stream-Based JSON Parsing
 - Introduced a **custom, lightweight JSON parser** built specifically for ESP8266 with low memory.
 - Parses deeply nested streamed JSON directly from `WiFiClient`, **without loading entire strings into memory**.
 - Ideal for Gemini AI's large responses—ensures stable parsing on 80KB RAM boards.
-- Added a new function called `getAnswerStream` which streams each char from stream. For use see the `Gemini_Get_Answer_Stream` example folder.
+- Added a new function called `getAnswerStream` which streams each char from stream to give realtime answers. For use see the `Gemini_Get_Answer_Stream` example folder.
 - Now it can parse responses upto 5000 tokens or greater.
 
 ### 🧠 Gemini_AI Memory Efficiency Boost
@@ -59,7 +59,7 @@
 
 ## 💡 LED Indicator
 
-#### **By default the led indicator is on but you can turn it off by using `gemini.ledmode=false`.**
+  **By default the led indicator is on but you can turn it off by using `gemini.ledmode=false`.**
 
 ### Indications :
 
@@ -96,4 +96,4 @@
 
 ---
 
-### 🛸 Like this project? Show some love by giving it a ⭐️!
+### **🛸 Like this project? Show some love by giving it a ⭐️!**
