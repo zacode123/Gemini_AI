@@ -41,6 +41,12 @@
   - ESP32: default 3000 tokens, max 5000
 - Use `setMaxTokens(0)`, you don't want to specify a fixed no. of max tokens.
 
+### 🛠️ Static JSON Builder
+- Uses only stack and static memory—no malloc, new, or String—perfect for low-RAM environments like ESP8266.
+- Ultra-fast serialization, lightweight and super fast JSON building.
+- Supports deeply nested objects and arrays. Handles complex JSON structures with configurable maximum nesting depth.
+- Payload is generated using this library.
+
 ### 🧠 Smart JSON Handling
 - `getAnswerStream("Question", Callback)` streams AI responses in real-time.
 - Handles deeply nested responses up to 5000 tokens.
@@ -122,8 +128,6 @@ gemini.getAnswerStream("Tell me a story", [](String chunk){
 
 Streams data in real-time, perfect for chat apps or live AI feedback.
 
-
-
 ---
 
 🔗 Contribute & Support
@@ -134,10 +138,10 @@ Found a bug or have an idea? Open an issue or submit a pull request.
 
 Your contributions make Gemini AI even smarter on ESP boards.
 
-
-
 ---
 
 <p align="center">
   Made with ❤️ for ESP8266 & ESP32 developers
 </p>
+
+## *🛸 Like this project? Show some love by giving it a ⭐️!*
