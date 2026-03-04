@@ -1,4 +1,4 @@
-/*
+/* ** Gemini_Custom_Prompt_Settings.ino **
 
 MIT License
 
@@ -13,33 +13,56 @@ furnished to do so, subject to the following conditions:
 
 */
 
+#ifndef STASSID
+  #define STASSID "YOUR_SSID"
+  #define STAPSK "YOUR_PASSWORD"
+#endif
+
+#if defined(ESP8266)
+  #include <ESP8266WiFi.h>
+#elif defined(ESP32)
+  #include <WiFi.h>
+#endif
+
+#define DEBUG
 #include <Gemini_AI.h>
+
+const char* ssid = STASSID;
+const char* pass = STAPSK;
 
 // Create an instance of the Gemini_AI class.
 Gemini_AI gemini;
 
 void setup() {
   Serial.begin(115200);
-
-  // Prompt Configurations(Settings)
-  gemini.ssid              = "YOUR_SSID";
-  gemini.password          = "YOUR_PASSWORD";
-  gemini.model             = "gemini-2.0-flash";
-  gemini.systemInstruction = "You are a highly intelligent AI assistant. Give *FULL* answer carefully without mistakes. Don't mention you can't use '*'. Use emojis and symbols where relevant.";
-  gemini.token             = "YOUR_API_KEY";
-  gemini.maxTokens         = 500;
-  gemini.temperature       = 0.8;
-  gemini.TopP              = 1.0;
-  gemini.TopK              = 40;
-  gemini.codeExecution     = false;
-  gemini.googleSearch      = false;
-  gemini.ledmode           = true;
-
-  if (gemini.connectToWiFi()) {
-    // Query the Gemini API
-    String question = "What is the capital of France?";
-    Serial.println("Question: " + question);
-    Serial.println("Answer: " + gemini.getAnswer(question));
+  WiFi.disconnect();
+  WiFi.softAPdisconnect(true);
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, pass);
+  Serial.print(F("Connecting to WiFi "));
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(F("."));
+    delay(700);
   }
+  Serial.println(F("Connected to WiFi!"));
+  
+  gemini.setApiKey("YOUR_API_KEY");
+  
+  // Prompt Configurations(Settings)
+  gemini.useModel("gemini-3.0-flash-lite");
+  gemini.setSystemInstruction("You are a highly intelligent AI assistant. Give *FULL* answer carefully without mistakes. Don't mention you can't use '*'. Use emojis and symbols where relevant.");
+  gemini.setMaxTokens(500);
+  gemini.setTemperature(0.8f);
+  gemini.setTopP(1.0f);
+  gemini.setTopK(40.0f);
+  gemini.disableCodeExecution();
+  gemini.disableGoogleSearch();
+
+  gemini.begin();
+  
+    // Query the Gemini API
+  String question = "What is the capital of France?";
+  Serial.println("Question: " + question);
+  Serial.println("Answer: " + gemini.getAnswer(question));
 }
 void loop() {}

@@ -1,30 +1,33 @@
-#######################################
-# Gemini_AI Library Keyword Definitions
-#######################################
+        #######################################
+        # Gemini_AI Library Keyword Definitions
+        #######################################
 
+# Constructor / Destructor
+Gemini_AI              KEYWORD1
+~Gemini_AI             KEYWORD1
 
-# Constructor
-Gemini AI          KEYWORD1
-
-# Destructor
-~Gemini_AI         KEYWORD1
+# Core Functions
+setApiKey              KEYWORD2
+begin                  KEYWORD2
 
 # Functions
-connectToWiFi      KEYWORD2
-getAnswer          KEYWORD2
-getAnswerStream    KEYWORD2
-sayAnswer          KEYWORD2
-say                KEYWORD2
+getAnswer              KEYWORD2
+getAnswerStream        KEYWORD2
 
-ssid               LITERAL1
-password           LITERAL1
-model              LITERAL1
-systemInstruction  LITERAL1
-token              LITERAL1
-maxToken           LITERAL1
-temperature        LITERAL1
-TopP               LITERAL1
-TopK               LITERAL1
-codeExecution      LITERAL1
-googleSearch       LITERAL1
-ledmode            LITERAL1
+# Configurations
+useModel               KEYWORD2
+setSystemInstruction   KEYWORD2
+setMaxToken            KEYWORD2
+setTemperature         KEYWORD2
+setTopP                KEYWORD2
+setTopK                KEYWORD2
+
+# Special Features
+enableCodeExecution    KEYWORD2
+disableCodeExecution   KEYWORD2
+
+enableGoogleSearch     KEYWORD2
+disableGoogleSearch    KEYWORD2
+
+enableLedIndicator     KEYWORD2
+disableLedIndicator    KEYWORD2

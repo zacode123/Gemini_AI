@@ -1,10 +1,8 @@
-![Screenshot_2025-06-16-14-28-45-203_com miui gallery](https://github.com/user-attachments/assets/c82ff01c-be46-4612-8d82-d2049a4b8ca8)
-
-<h1 align="center">Gemini AI Library</h1>
+# ✨ Gemini AI Library ✨
 
 <p align="center">
-  <b>✨ Bring Google's Gemini AI to ESP8266 & ESP32 ✨</b><br>
-  <i>Ask questions, retrieve smart answers, and optionally speak them out!</i>
+  <b>Bring Google's Gemini AI to low-powered microcontrollers, ESP8266 & ESP32</b><br>
+  <i>Ask questions and get intelligent responses right from your microcontroller!</i>
 </p>
 
 <p align="center">
@@ -17,84 +15,129 @@
 
 ## 📦 Features
 
-- 🤖 **Gemini AI Access** — Send prompts and get intelligent responses.
-- 🧠 **Custom Prompt Settings** — Configure model, temperature, top-p, top-k, and more.
-- 🔐 **Secure HTTP (HTTPS)** — Communicates via secure Google endpoints.
-- 🎙️ **TTS (Text-To-Speech)** — Planned beta feature for speaking responses for ESP8266 only.
-- 💡 **LED Indicator** — LED Status indicator (LED_BUILTIN).
+- 🤖 **Gemini AI Access** — Send prompts and receive smart responses ultra fast.
+- 🧠 **Custom Prompt Settings** — Configure Model, Temperature, TopP, TopK, and much more.
+- 🔐 **Secure HTTP (HTTPS)** — Communicates safely with Google endpoints.
+- 💡 **Memory Efficient** — Stream-based JSON parsing and static JSON building minimize RAM usage.
+- ⚡ **Real-Time Streaming** — Stream responses as they arrive for chat-like interactions.
 
 ---
 
-## 🚀 What's New (v6.5.0)
+## 🚀 What's New (v6.6.0)
 
-### 🗂️ File management
-- All related source files are now modularized into .hpp headers.
-- Each header is now self-contained with minimal external dependencies.
-- Only necessary components are compiled into the final firmware.
+### 🧩 Modular Design
+- Separate `.hpp` files for clean structure:
+  - `Gemini_AI.h` — main interface
+  - `Gemini_Cert.h` — Google Root CA certificate used by Gemini AI.
+  - `GeminiClient.hpp` — HTTPS client helper
+  - `StaticJsonBuilder.hpp` — stack-based JSON serialization
+  - `StreamJsonParser.hpp` — stream-based JSON parser
+- Easier maintenance and future enhancements.
 
-### 🛠️ Static JSON Builder
-- Uses only stack and static memory—no malloc, new, or String—perfect for low-RAM environments like ESP8266.
-- Ultra-fast serialization and ightweight and fast JSON building into a user-supplied char[] buffer.
-- Supports deeply nested objects and arrays. Handles complex JSON structures with configurable maximum nesting depth.
-- Payload is generated using this library.
+### ⚡ Memory Efficiency
+- Stream reading avoids full response buffering.
+- Max tokens limit ensures stability:
+  - ESP8266: default 500 tokens, max 1000
+  - ESP32: default 3000 tokens, max 5000
+- Use `setMaxTokens(0)`, you don't want to specify a fixed no. of max tokens.
 
-### 🔄 Stream-Based JSON Parsing
-- Introduced a **custom, lightweight JSON parser** built specifically for ESP8266 with low memory.
-- Parses deeply nested streamed JSON directly from `WiFiClient`, **without loading entire strings into memory**.
-- Ideal for Gemini AI's large responses—ensures stable parsing on 80KB RAM boards.
-- Added a new function called `getAnswerStream` which streams each char from stream to give realtime answers. For use see the `Gemini_Get_Answer_Stream` example folder.
-- Now it can parse responses upto 5000 tokens or greater.
+### 🧠 Smart JSON Handling
+- `getAnswerStream("Question", Callback)` streams AI responses in real-time.
+- Handles deeply nested responses up to 5000 tokens.
 
-### 🧠 Gemini_AI Memory Efficiency Boost
-- Reduced dynamic allocations by replacing full response buffering with **progressive stream reading**.
-- Memory usage optimized for **real-time inference** and **chunked text extraction**.
-- Internal `_extractContent()` now uses `ESP8266Json` to extract `"text"` efficiently.
-- Added a limit of 5000 `maxTokens` for **normal use** and 400 `maxTokens` for `USE_TTS`, to optimize memory issues. `maxTokens` greater than its limit will fallback to the limit.
-- HTTPS POST payload heap reduced by only including useful settings in it.
-
-### 📦 Modular `Gemini_AI.hpp` Improvements
-- Cleaner separation of parsing logic and request handling.
-- Enables future drop-in replacements or alternative parsers without modifying core logic.
-
----
-
-## 💡 LED Indicator
-
-  **By default the led indicator is on but you can turn it off by using `gemini.ledmode=false`.**
-
-### Indications :
-
-- LED blinking means it is trying to connect to WiFi.
-- LED turned on means it's ready for asking question.
-- LED turned off means it's processing the question.
+### 🔐 Secure HTTPS Connections
+- Works with ESP8266 and ESP32 secure clients.
+- Supports CA certificate or SHA1 fingerprint fallback.
+- Keeps your queries and API keys safe.
 
 ---
 
 ## 🔧 Installation
 
-1. **Download** the library ZIP [here](https://github.com/zacode123/Gemini_AI/archive/refs/heads/main.zip).
+1. Download the library ZIP from GitHub.
 2. In Arduino IDE:
-   - Go to `Sketch` → `Include Library` → `Add .ZIP Library...`
-   - Select the downloaded ZIP file.
-3. Include the library in your sketch:
-   ```cpp
-   #include <Gemini_AI.h>
-   
-   Gemini_AI gemini;
-   
-   void setup() {
-    Serial.begin(115200);
-    gemini.ssid     = "YOUR_SSID";
-    gemini.password = "YOUR_PASSWORD";
-    gemini.token    = "YOUR_API_KEY";
-    gemini.connectToWiFi();
-   }
+   - `Sketch → Include Library → Add .ZIP Library...`
+   - Select the downloaded ZIP.
+3. Include in your sketch:
+```cpp
+#if defined(ESP8266)
+  #include <ESP8266WiFi.h>
+#elif defined(ESP32)
+  #include <WiFi.h>
+#endif
+#include <Gemini_AI.h>
 
-   void loop() {
-    Serial.println("Answer: " + gemini.getAnswer("What is the capital of France?"));
-   }
-   ```
+const char* ssid = "YOUR_WIFI_SSID";
+const char* pass = "YOUR_WIFI_PASSWORD";
+
+Gemini_AI gemini;
+
+void setup() {
+  Serial.begin(115200);
+
+  WiFi.begin(ssid, pass);
+  Serial.print(F("Connecting to WiFi"));
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(F("."));
+    delay(500);
+  }
+  Serial.println(F("Connected!"));
+
+  gemini.begin();
+  gemini.setApiKey("YOUR_API_KEY");
+
+  String answer = gemini.getAnswer("What is the capital of France?");
+  Serial.println("Answer: " + answer);
+}
+
+void loop() {}
+```
 
 ---
 
-### **🛸 Like this project? Show some love by giving it a ⭐️!**
+⭐ Notes
+
+• No TTS or LED indicator in this version.
+• Connect to WiFi manually before using the library.
+• Defining the DEBUG macro enables verbose library logs.
+• Default System Instruction is `You are a highly intelligent AI assistant. Use emojis and symbols where relevant.`. If you want disable System Instruction, just use `setSystemInstruction("")`. I would not recomend you to disable instruction as it can send a lot of asterisks in response.
+• Modular design allows easy maintenance and future improvements.
+
+---
+
+💡 Why Use Gemini AI Library?
+
+• Real-time streaming → interactive AI experience.
+• Memory safe → no crashes on low-RAM devices.
+• Modular & maintainable → future-proof your code.
+• Secure communication → HTTPS encryption ensures safety.
+
+---
+
+📖 Example: Streaming Responses
+
+gemini.getAnswerStream("Tell me a story", [](String chunk){
+    Serial.print(chunk);
+});
+
+Streams data in real-time, perfect for chat apps or live AI feedback.
+
+
+
+---
+
+🔗 Contribute & Support
+
+Love this library? Give it a ⭐ on GitHub!
+
+Found a bug or have an idea? Open an issue or submit a pull request.
+
+Your contributions make Gemini AI even smarter on ESP boards.
+
+
+
+---
+
+<p align="center">
+  Made with ❤️ for ESP8266 & ESP32 developers
+</p>

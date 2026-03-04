@@ -42,9 +42,9 @@
 #include <ctype.h>
 #include <functional>
 
-class ESP8266StreamJsonParser {
+class StreamJsonParser {
 public:
-  ESP8266StreamJsonParser(Stream &stream) : _stream(stream), _peek('\0') {}
+  StreamJsonParser(Stream &stream) : _stream(stream), _peek('\0') {}
 
   bool find(const char *key) {
     _peek = '\0';
