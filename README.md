@@ -1,4 +1,4 @@
-# ✨ Gemini AI Library ✨
+<h1 align="center">✨ Gemini AI Library ✨</h1>
 
 <p align="center">
   <b>Bring Google's Gemini AI to low-powered microcontrollers, ESP8266 & ESP32</b><br>
@@ -101,36 +101,38 @@ void loop() {}
 
 ---
 
-⭐ Notes
+### ⭐ Notes
 
-• No TTS or LED indicator in this version.
-• Connect to WiFi manually before using the library.
-• Defining the DEBUG macro enables verbose library logs.
-• Default System Instruction is `You are a highly intelligent AI assistant. Use emojis and symbols where relevant.`. If you want disable System Instruction, just use `setSystemInstruction("")`. I would not recomend you to disable instruction as it can send a lot of asterisks in response.
-• Modular design allows easy maintenance and future improvements.
-
----
-
-💡 Why Use Gemini AI Library?
-
-• Real-time streaming → interactive AI experience.
-• Memory safe → no crashes on low-RAM devices.
-• Modular & maintainable → future-proof your code.
-• Secure communication → HTTPS encryption ensures safety.
+- No TTS or LED indicator in this version.
+- Connect to WiFi manually before using the library.
+- Defining the DEBUG macro enables verbose library logs.
+- Default System Instruction is `You are a highly intelligent AI assistant. Use emojis and symbols where relevant.`. If you want disable System Instruction, just use `setSystemInstruction("")`. I would not recomend you to disable instruction as it can send a lot of asterisks in response.
+- Modular design allows easy maintenance and future improvements.
 
 ---
 
-📖 Example: Streaming Responses
+### 💡 Why Use Gemini AI Library?
 
+- Real-time streaming → interactive AI experience.
+- Memory safe → no crashes on low-RAM devices.
+- Modular & maintainable → future-proof your code.
+- Secure communication → HTTPS encryption ensures safety.
+
+---
+
+### 📖 Example: Streaming Responses
+
+```cpp
 gemini.getAnswerStream("Tell me a story", [](String chunk){
     Serial.print(chunk);
 });
+```
 
 Streams data in real-time, perfect for chat apps or live AI feedback.
 
 ---
 
-🔗 Contribute & Support
+### 🔗 Contribute & Support
 
 Love this library? Give it a ⭐ on GitHub!
 
