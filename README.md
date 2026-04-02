@@ -107,6 +107,7 @@ void loop() {}
 - No TTS or LED indicator in this version.
 - Connect to WiFi manually before using the library.
 - Defining the DEBUG macro enables verbose library logs.
+- Default gemini ai model is `gemini-2.5-flash-lite`.
 - Default System Instruction is `You are a highly intelligent AI assistant. Use emojis and symbols where relevant.`. If you want disable System Instruction, just use `setSystemInstruction("")`. I would not recomend you to disable instruction as it can send a lot of asterisks in response.
 - Modular design allows easy maintenance and future improvements.
 
