@@ -68,7 +68,7 @@
   
     private:
 
-      const char* model = "gemini-3.1-flash-lite";
+      const char* model = "gemini-2.5-flash-lite";
       const char* systemInstruction = "You are a highly intelligent AI assistant. Use emojis and symbols where relevant.";
       const char* apiKey = nullptr;
       
