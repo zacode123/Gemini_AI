@@ -3,7 +3,7 @@
 #define GEMINI_AI_VERSION "6.6.0"
 
 #include <Arduino.h>
-#include "Gemini_Cert.h"
+#include "Google_ROOTCa.h"
 
 #ifdef ESP8266
   #include <memory>
@@ -49,7 +49,7 @@ class GeminiClient {
         if (!_client.probeMaxFragmentLength("generativelanguage.googleapis.com", 443, 4096)) {
           debuglnF("Failed to set probeMaxFragmentLength");
         }
-        if (!_client.setCACert_P(Gemini_Cert)) {
+        if (!_client.setCACert_P(google_root_ca)) {
           debuglnF("CA cert failed. Trying SHA1 fingerprint...");
           if (!_client.setFingerprint(GEMINI_SHA1_FINGERPRINT)) {
             debuglnF("Fingerprint failed. Falling back to insecure.");
@@ -60,7 +60,7 @@ class GeminiClient {
         }
       #elif defined(ESP32)
         _client.setBufferSizes(4096, 4096);
-        if (!_client.setCACert(gemini_cert)) {
+        if (!_client.setCACert(google_root_ca)) {
           debuglnF("CA cert failed. Falling back to insecure.");
           _client.setInsecure();
         } else {
